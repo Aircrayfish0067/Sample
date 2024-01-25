@@ -1,0 +1,143 @@
+> use Student
+switched to db Student
+> db.createCollection('Stu')
+{ "ok" : 1 }
+> db.Stu.insert({'rno':1,'sname':'Sahil','Degree':'BSC','Sem':5,'CGPA':9.23})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':2,'sname':'Ninad','Degree':'BBA','Sem':3,'CGPA':9})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':3,'sname':'Vedant','Degree':'BCOM','Sem':1,'CGPA':7})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':4,'sname':'Sagar','Degree':'BCA','Sem':6,'CGPA':6.23})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':5,'sname':'Rekha','Degree':'BSC','Sem':6,'CGPA':10})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':6,'sname':'Ketki','Degree':'BSC','Sem':4,'CGPA':8.8})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':7,'sname':'Aryaman','Degree':'BBA','Sem':2,'CGPA':7.9})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':8,'sname':'Manohar','Degree':'BSC','Sem':5,'CGPA':7.79})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':9,'sname':'Mrunal','Degree':'BCOM','Sem':3,'CGPA':6.79})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':10,'sname':'Dyanand','Degree':'BSC','Sem':2,'CGPA':5.9})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({'rno':11,'sname':'Abhishek','Degree':'BSC','Sem':6,'CGPA':7.9})
+WriteResult({ "nInserted" : 1 })
+> db
+Student
+> db.Stu.find().pretty()
+{
+	"_id" : ObjectId("64e48e3343ee602a34ecea40"),
+	"rno" : 1,
+	"sname" : "Sahil",
+	"Degree" : "BSC",
+	"Sem" : 5,
+	"CGPA" : 9.23
+}
+{
+	"_id" : ObjectId("64e48e4c43ee602a34ecea41"),
+	"rno" : 2,
+	"sname" : "Ninad",
+	"Degree" : "BBA",
+	"Sem" : 3,
+	"CGPA" : 9
+}
+{
+	"_id" : ObjectId("64e48ea343ee602a34ecea42"),
+	"rno" : 3,
+	"sname" : "Vedant",
+	"Degree" : "BCOM",
+	"Sem" : 1,
+	"CGPA" : 7
+}
+{
+	"_id" : ObjectId("64e48ec743ee602a34ecea43"),
+	"rno" : 4,
+	"sname" : "Sagar",
+	"Degree" : "BCA",
+	"Sem" : 6,
+	"CGPA" : 6.23
+}
+{
+	"_id" : ObjectId("64e48edd43ee602a34ecea44"),
+	"rno" : 5,
+	"sname" : "Rekha",
+	"Degree" : "BSC",
+	"Sem" : 6,
+	"CGPA" : 10
+}
+{
+	"_id" : ObjectId("64e48efc43ee602a34ecea45"),
+	"rno" : 6,
+	"sname" : "Ketki",
+	"Degree" : "BSC",
+	"Sem" : 4,
+	"CGPA" : 8.8
+}
+{
+	"_id" : ObjectId("64e48f1c43ee602a34ecea46"),
+	"rno" : 7,
+	"sname" : "Aryaman",
+	"Degree" : "BBA",
+	"Sem" : 2,
+	"CGPA" : 7.9
+}
+{
+	"_id" : ObjectId("64e48f7543ee602a34ecea47"),
+	"rno" : 8,
+	"sname" : "Manohar",
+	"Degree" : "BSC",
+	"Sem" : 5,
+	"CGPA" : 7.79
+}
+{
+	"_id" : ObjectId("64e48f9043ee602a34ecea48"),
+	"rno" : 9,
+	"sname" : "Mrunal",
+	"Degree" : "BCOM",
+	"Sem" : 3,
+	"CGPA" : 6.79
+}
+{
+	"_id" : ObjectId("64e48ff143ee602a34ecea49"),
+	"rno" : 10,
+	"sname" : "Dyanand",
+	"Degree" : "BSC",
+	"Sem" : 2,
+	"CGPA" : 5.9
+}
+{
+	"_id" : ObjectId("64e4903143ee602a34ecea4a"),
+	"rno" : 11,
+	"sname" : "Abhishek",
+	"Degree" : "BSC",
+	"Sem" : 6,
+	"CGPA" : 7.9
+}
+> db.Stu.find({Degree:'BCA'})
+{ "_id" : ObjectId("64e48ec743ee602a34ecea43"), "rno" : 4, "sname" : "Sagar", "Degree" : "BCA", "Sem" : 6, "CGPA" : 6.23 }
+> db.Stu.find({sname:'Sahil'})
+{ "_id" : ObjectId("64e48e3343ee602a34ecea40"), "rno" : 1, "sname" : "Sahil", "Degree" : "BSC", "Sem" : 5, "CGPA" : 9.23 }
+
+> db.Stu.find({sname:'Sahil'}).pretty()
+{
+	"_id" : ObjectId("64e48e3343ee602a34ecea40"),
+	"rno" : 1,
+	"sname" : "Sahil",
+	"Degree" : "BSC",
+	"Sem" : 5,
+	"CGPA" : 9.23
+}
+
+> db.Stu.find({Degree:'BCA'}).pretty()
+{
+	"_id" : ObjectId("64e48ec743ee602a34ecea43"),
+	"rno" : 4,
+	"sname" : "Sagar",
+	"Degree" : "BCA",
+	"Sem" : 6,
+	"CGPA" : 6.23
+}
+
+

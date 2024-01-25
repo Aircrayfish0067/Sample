@@ -1,0 +1,326 @@
+sup_54=# create table Supplier(Sno int primary key,Name text,City text);
+CREATE TABLE
+sup_54=# insert into Supplier values(1,AAA,Pune);
+ERROR:  column "aaa" does not exist
+LINE 1: insert into Supplier values(1,AAA,Pune);
+                                      ^
+sup_54=# insert into Supplier values(1,'AAA','Pune');
+INSERT 0 1
+sup_54=# insert into Supplier values(2,'BBB','Hyderabad');
+INSERT 0 1
+sup_54=# insert into Supplier values(2,'CCC','Mumbai');
+ERROR:  duplicate key value violates unique constraint "supplier_pkey"
+DETAIL:  Key (sno)=(2) already exists.
+sup_54=# insert into Supplier values(3,'CCC','Mumbai');
+INSERT 0 1
+sup_54=# insert into Supplier values(4,'DDD','Banglore');
+INSERT 0 1
+sup_54=# insert into Supplier values(5,'EEE','Jaipur');
+INSERT 0 1
+sup_54=# insert into Supplier values(6,'FFF','Haryana');
+INSERT 0 1
+sup_54=# insert into Supplier values(7,'GGG','Patna');
+INSERT 0 1
+sup_54=# insert into Supplier values(8,'HHH','Delhi');
+INSERT 0 1
+sup_54=# insert into Supplier values(9,'III','Latur');
+INSERT 0 1
+sup_54=# insert into Supplier values(10,'JJJ','Ranchi');
+INSERT 0 1
+sup_54=# create table Part(Pno int primary key,color text,weigth_in_kg int,Quantity int);
+CREATE TABLE
+sup_54=# insert into Part values(101,'Grey',5,100);
+INSERT 0 1
+sup_54=# insert into Part values(102,'Black',10,40);
+INSERT 0 1
+sup_54=# insert into Part values(103,'Orange',3,200);
+INSERT 0 1
+sup_54=# insert into Part values(104,'Blue',20,250);
+INSERT 0 1
+sup_54=# insert into Part values(105,'Yellow',2,20);
+INSERT 0 1
+sup_54=# insert into Part values(106,'Green',32,35);
+INSERT 0 1
+sup_54=# insert into Part values(107,'White',4,23);
+INSERT 0 1
+sup_54=# insert into Part values(108,'Orange',3,45);
+INSERT 0 1
+sup_54=# insert into Part values(109,'Violet',9,22);
+INSERT 0 1
+sup_54=# insert into Part values(110,'Indigo',3,19);
+INSERT 0 1
+sup_54=# create table Sup_par(sno int references Supplier(sno),pno int references Part(pno));
+CREATE TABLE
+sup_54=# select * from Supplier;
+ sno | name |   city    
+-----+------+-----------
+   1 | AAA  | Pune
+   2 | BBB  | Hyderabad
+   3 | CCC  | Mumbai
+   4 | DDD  | Banglore
+   5 | EEE  | Jaipur
+   6 | FFF  | Haryana
+   7 | GGG  | Patna
+   8 | HHH  | Delhi
+   9 | III  | Latur
+  10 | JJJ  | Ranchi
+(10 rows)
+
+sup_54=# select * from Part;
+ pno | color  | weigth_in_kg | quantity 
+-----+--------+--------------+----------
+ 101 | Grey   |            5 |      100
+ 102 | Black  |           10 |       40
+ 103 | Orange |            3 |      200
+ 104 | Blue   |           20 |      250
+ 105 | Yellow |            2 |       20
+ 106 | Green  |           32 |       35
+ 107 | White  |            4 |       23
+ 108 | Orange |            3 |       45
+ 109 | Violet |            9 |       22
+ 110 | Indigo |            3 |       19
+(10 rows)
+
+sup_54=# insert into Sup_par values(1,101);
+INSERT 0 1
+sup_54=# insert into Sup_par values(1,102);
+INSERT 0 1
+sup_54=# insert into Sup_par values(4,108);
+INSERT 0 1
+sup_54=# insert into Sup_par values(5,103);
+INSERT 0 1
+sup_54=# insert into Sup_par values(6,104);
+INSERT 0 1
+sup_54=# insert into Sup_par values(7,110);
+INSERT 0 1
+sup_54=# insert into Sup_par values(3,105);
+INSERT 0 1
+sup_54=# insert into Sup_par values(8,107);
+INSERT 0 1
+sup_54=# insert into Sup_par values(7,104);
+INSERT 0 1
+sup_54=# insert into Sup_par values(2,105);
+INSERT 0 1
+sup_54=# insert into Sup_par values(3,103);
+INSERT 0 1
+sup_54=# insert into Sup_par values(2,107);
+INSERT 0 1
+sup_54=# insert into Sup_par values(8,106);
+INSERT 0 1
+sup_54=# insert into Sup_par values(10,109);
+INSERT 0 1
+sup_54=# alter table Part add column Name text;
+ALTER TABLE
+sup_54=# select * from Part;
+ pno | color  | weigth_in_kg | quantity | name 
+-----+--------+--------------+----------+------
+ 101 | Grey   |            5 |      100 | 
+ 102 | Black  |           10 |       40 | 
+ 103 | Orange |            3 |      200 | 
+ 104 | Blue   |           20 |      250 | 
+ 105 | Yellow |            2 |       20 | 
+ 106 | Green  |           32 |       35 | 
+ 107 | White  |            4 |       23 | 
+ 108 | Orange |            3 |       45 | 
+ 109 | Violet |            9 |       22 | 
+ 110 | Indigo |            3 |       19 | 
+(10 rows)
+
+sup_54=# update Part set name='Mirror' where pno=101;
+UPDATE 1
+sup_54=# update Part set name='Mudguard' where pno=102;
+UPDATE 1
+sup_54=# update Part set name='Stand' where pno=103;
+UPDATE 1
+sup_54=# update Part set name='Light' where pno=104;
+UPDATE 1
+sup_54=# update Part set name='indicator' where pno=105;
+UPDATE 1
+sup_54=# update Part set name='tyre' where pno=106;
+UPDATE 1
+sup_54=# update Part set name='rod' where pno=107;
+UPDATE 1
+sup_54=# update Part set name='horn' where pno=108;
+UPDATE 1
+sup_54=# update Part set name='clutch' where pno=109;
+UPDATE 1
+sup_54=# update Part set name='silencer' where pno=110;
+UPDATE 1
+sup_54=# select * from Part;
+ pno | color  | weigth_in_kg | quantity |   name    
+-----+--------+--------------+----------+-----------
+ 101 | Grey   |            5 |      100 | Mirror
+ 102 | Black  |           10 |       40 | Mudguard
+ 103 | Orange |            3 |      200 | Stand
+ 104 | Blue   |           20 |      250 | Light
+ 105 | Yellow |            2 |       20 | indicator
+ 106 | Green  |           32 |       35 | tyre
+ 107 | White  |            4 |       23 | rod
+ 108 | Orange |            3 |       45 | horn
+ 109 | Violet |            9 |       22 | clutch
+ 110 | Indigo |            3 |       19 | silencer
+(10 rows)
+
+sup_54=# select * from Supplier
+sup_54-# ;
+ sno | name |   city    
+-----+------+-----------
+   1 | AAA  | Pune
+   2 | BBB  | Hyderabad
+   3 | CCC  | Mumbai
+   4 | DDD  | Banglore
+   5 | EEE  | Jaipur
+   6 | FFF  | Haryana
+   7 | GGG  | Patna
+   8 | HHH  | Delhi
+   9 | III  | Latur
+  10 | JJJ  | Ranchi
+(10 rows)
+
+sup_54=# select * from Sup_par;
+ sno | pno 
+-----+-----
+   1 | 101
+   1 | 102
+   4 | 108
+   5 | 103
+   6 | 104
+   7 | 110
+   3 | 105
+   8 | 107
+   7 | 104
+   2 | 105
+   3 | 103
+   2 | 107
+   8 | 106
+  10 | 109
+(14 rows)
+
+sup_54=# alter table Part rename column name to P_name;
+ALTER TABLE
+sup_54=# select * from Part;
+ pno | color  | weigth_in_kg | quantity |  p_name   
+-----+--------+--------------+----------+-----------
+ 101 | Grey   |            5 |      100 | Mirror
+ 102 | Black  |           10 |       40 | Mudguard
+ 103 | Orange |            3 |      200 | Stand
+ 104 | Blue   |           20 |      250 | Light
+ 105 | Yellow |            2 |       20 | indicator
+ 106 | Green  |           32 |       35 | tyre
+ 107 | White  |            4 |       23 | rod
+ 108 | Orange |            3 |       45 | horn
+ 109 | Violet |            9 |       22 | clutch
+ 110 | Indigo |            3 |       19 | silencer
+(10 rows)
+
+sup_54=# select p_name from Supplier as s,Part as p,Sub_par as sp where s.sno=sp.sno and p.pno=sp.pno and name='AAA';
+ERROR:  relation "sub_par" does not exist
+LINE 1: select p_name from Supplier as s,Part as p,Sub_par as sp whe...
+                                                   ^
+sup_54=# select p_name from Supplier as s,Part as p,Sup_par as sp where s.sno=sp.sno and p.pno=sp.pno and name='AAA';
+  p_name  
+----------
+ Mirror
+ Mudguard
+(2 rows)
+
+sup_54=# select name from Supplier as s,Part as p,Sup_par as sp where s.sno=sp.sno and p.pno=sp.pno and p_name='indicator';
+ name 
+------
+ CCC
+ BBB
+(2 rows)
+
+sup_54=# select max(weight_in_kg)from Part;
+ERROR:  column "weight_in_kg" does not exist
+LINE 1: select max(weight_in_kg)from Part;
+                   ^
+HINT:  Perhaps you meant to reference the column "part.weigth_in_kg".
+sup_54=# select max(part.weight_in_kg)from Part;
+ERROR:  column part.weight_in_kg does not exist
+LINE 1: select max(part.weight_in_kg)from Part;
+                   ^
+HINT:  Perhaps you meant to reference the column "part.weigth_in_kg".
+sup_54=# select max(weight_in_kg) from Part;
+ERROR:  column "weight_in_kg" does not exist
+LINE 1: select max(weight_in_kg) from Part;
+                   ^
+HINT:  Perhaps you meant to reference the column "part.weigth_in_kg".
+sup_54=# select max(weight_in_kg) from Part as p,Sup_par as sp where p.pno=sp.pno;
+ERROR:  column "weight_in_kg" does not exist
+LINE 1: select max(weight_in_kg) from Part as p,Sup_par as sp where ...
+                   ^
+HINT:  Perhaps you meant to reference the column "p.weigth_in_kg".
+sup_54=# select max(weigth_in_kg) from Part as p,Sup_par as sp where p.pno=sp.pno;
+ max 
+-----
+  32
+(1 row)
+
+sup_54=# select max(weigth_in_kg) from Part;
+ max 
+-----
+  32
+(1 row)
+
+sup_54=# select name,city from Supplier;
+ name |   city    
+------+-----------
+ AAA  | Pune
+ BBB  | Hyderabad
+ CCC  | Mumbai
+ DDD  | Banglore
+ EEE  | Jaipur
+ FFF  | Haryana
+ GGG  | Patna
+ HHH  | Delhi
+ III  | Latur
+ JJJ  | Ranchi
+(10 rows)
+
+sup_54=# select max(weigth_in_kg) from Part where weigth_in_kg not in(select max(weigth_in_kg));
+ERROR:  aggregate functions are not allowed in WHERE
+LINE 1: ...in_kg) from Part where weigth_in_kg not in(select max(weigth...
+                                                             ^
+sup_54=# select max(weigth_in_kg) from Part where weigth_in_kg not in(select max(weigth_in_kg) from Part);
+ max 
+-----
+  20
+(1 row)
+
+sup_54=# select weigth_in_kg from Part where weigth_in_kg not in(select max(weigth_in_kg) from Part);
+ weigth_in_kg 
+--------------
+            5
+           10
+            3
+           20
+            2
+            4
+            3
+            9
+            3
+(9 rows)
+
+sup_54=# select name,count(p.pno) from Supplier as s,Part as p,Sup_par as sp where s.sno=sp.sno and p.pno=sp.pno ;
+ERROR:  column "s.name" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select name,count(p.pno) from Supplier as s,Part as p,Sup_pa...
+               ^
+sup_54=# select name,count(p.pno) from Supplier as s,Part as p,Sup_par as sp where s.sno=sp.sno and p.pno=sp.pno group by name ;
+ name | count 
+------+-------
+ BBB  |     2
+ HHH  |     2
+ JJJ  |     1
+ DDD  |     1
+ CCC  |     2
+ AAA  |     2
+ GGG  |     2
+ FFF  |     1
+ EEE  |     1
+(9 rows)
+
+sup_54=# 
+
+
+
